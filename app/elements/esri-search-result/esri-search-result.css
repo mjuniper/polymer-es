@@ -1,0 +1,21 @@
+
+:host .dataset-thumb {
+  float: left;
+}
+
+:host .result-main {
+  padding-left: 220px;
+
+}
+
+:host .dataset-item {
+  clear: both;
+  padding-top: 35px;
+  height: 175px;
+  overflow: hidden;
+}
+
+:host .dataset-item h3 {
+  margin: 0;
+  cursor: pointer;
+}

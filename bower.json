@@ -1,0 +1,15 @@
+{
+  "name": "polymer-es",
+  "version": "0.0.0",
+  "dependencies": {
+    "core-elements": "Polymer/core-elements#^0.4.0",
+    "paper-elements": "Polymer/paper-elements#^0.4.0",
+    "polymer": "Polymer/polymer#^0.4.0",
+    "paper-spinner": "PolymerLabs/paper-spinner",
+    "jquery": "~2.1.1",
+    "typeahead.js": "~0.10.5"
+  },
+  "devDependencies": {
+    "polymer-test-tools": "Polymer/polymer-test-tools#^0.4.0"
+  }
+}

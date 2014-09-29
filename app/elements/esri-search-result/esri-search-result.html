@@ -1,0 +1,28 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="esri-search-result" attributes="item">
+  <template>
+    <link rel="stylesheet" href="esri-search-result.css">
+
+    <li class="dataset-item">
+      <div>
+        <h3 class="card-title" on-click="{{onItemClick}}">
+          {{ item._source.name }}
+        </h3>
+      </div>
+      <div>
+        <div class="dataset-thumb">
+          <img src="{{ item._source.thumbnail_url || 'elements/esri-search-results/default-dataset-thumb.png' }}">
+        </div>
+        <div class="result-main">
+          <div class="snippet">
+            {{item._source.description | stripHtml}}
+          </div>
+        </div>
+      </div>
+    </li>
+  </template>
+  
+  <script src="esri-search-result.js"></script>
+
+</polymer-element>
