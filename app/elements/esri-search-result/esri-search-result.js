@@ -8,7 +8,7 @@
     },
 
     onItemClick: function (evt) {
-      this.fire('esri:search-result:item-clicked', evt.detail);
+      this.fire('esri:search-result:item-clicked', this.item);
     },
 
     stripHtml: function (html) {

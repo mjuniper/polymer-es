@@ -20,7 +20,7 @@
 
     handleResults: function (evt) {
       this.results = evt.detail;
-      setTimeout(function () { this.$.spinner.active = false; }.bind(this), 500);
+      this.async(function () { this.$.spinner.active = false; }, null, 500);
     }
 
   });

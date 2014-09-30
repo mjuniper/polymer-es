@@ -31,6 +31,11 @@
     <esri-search-results spinner="false"></esri-search-results>
   </div>
 
+  <script>
+    document.querySelector('esri-search-results').addEventListener('esri:search-result:item-clicked', function (evt) { alert(evt.detail._source.name);
+    });
+  </script>
+
 </body>
 
 </html>
