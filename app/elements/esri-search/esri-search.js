@@ -5,7 +5,7 @@
 
     searchEl: 'esri-search-field',
     url: 'http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/opendataqa.arcgis.com_datasets_production_20140925181622853/',
-    size: 10,
+    size: 20,
 
     ready: function () {
       var searchField = document.querySelector(this.searchEl);
