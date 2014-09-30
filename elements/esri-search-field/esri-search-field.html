@@ -1,0 +1,31 @@
+<link rel="import" href="../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../bower_components/core-icon/core-icon.html">
+<link rel="import" href="../../bower_components/core-field/core-field.html">
+<link rel="import" href="typeahead-import.html">
+
+<polymer-element name="esri-search-field" attributes="autofocus, placeholder, searchString, searchEl">
+
+  <template>
+    <link rel="stylesheet" href="esri-search-field.css">
+
+    <form autocomplete="off" 
+          on-submit="{{onSubmit}}">
+      <div class="search-container">
+        <core-field>
+          <core-icon icon="search"></core-icon>
+          <input 
+            type="search" 
+            autocomplete="off" 
+            autofocus?="{{autofocus}}" 
+            id="search" 
+            name="search" 
+            placeholder="{{placeholder}}" 
+            value="{{searchString}}">
+        </core-field>
+      </div>
+    </form>
+  </template>
+
+  <script src="esri-search-field.js"></script>
+
+</polymer-element>

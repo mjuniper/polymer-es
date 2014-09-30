@@ -1,0 +1,15 @@
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="esri-search" attributes="searchEl, url, size">
+  <template>
+    <core-ajax
+      id="ajax"
+      name="ajax" 
+      url="{{url}}/_search?q={{searchString}}&size={{size}}"
+      handleAs="json"
+      response="{{results}}"></core-ajax>
+  </template>
+  
+  <script src="esri-search.js"></script>
+
+</polymer-element>
