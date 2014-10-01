@@ -7,7 +7,9 @@
       name="ajax" 
       url="{{url}}/_search?q={{searchString}}&size={{size}}"
       handleAs="json"
-      response="{{results}}"></core-ajax>
+      response="{{results}}"
+      on-core-response="{{onResponse}}">
+    </core-ajax>
   </template>
   
   <script src="esri-search.js"></script>

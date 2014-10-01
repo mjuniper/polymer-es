@@ -5,6 +5,7 @@
 
     searchEl: 'esri-search',
     spinner: true,
+    showTiming: false,
 
     ready: function () {
       var searchComponent = document.querySelector(this.searchEl);
@@ -21,7 +22,12 @@
     handleResults: function (evt) {
       this.results = evt.detail;
       this.async(function () { this.$.spinner.active = false; }, null, 500);
+    },
+
+    round: function (num) {
+      return Math.round(num, 10);
     }
+
   });
 
 })();

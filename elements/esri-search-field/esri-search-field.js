@@ -16,7 +16,13 @@
 
     onSubmit: function (e) {
       e.preventDefault();
+      this.fire('esri:search:before-start', this.searchString);
       this.typeahead.typeahead('close');
+    },
+
+    onTypeaheadSelected: function (evt, suggestion) {
+      //this.searchString = suggestion.fields.title[0];
+      this.searchString = this.typeahead.typeahead('val');
       this.fire('esri:search:before-start', this.searchString);
     },
 
@@ -46,9 +52,6 @@
     },
 
     initTypeahead: function (url) {
-
-      var self = this;
-
       var opts = {
         highlight: true,
         minLength: 3,
@@ -68,7 +71,7 @@
         source: bloodhound.ttAdapter()
       };
 
-      this.typeahead = $(this.$.search).typeahead(opts, datasets).on('typeahead:selected', self.onSubmit.bind(this));
+      this.typeahead = $(this.$.search).typeahead(opts, datasets).on('typeahead:selected', this.onTypeaheadSelected.bind(this));
     }
 
   });

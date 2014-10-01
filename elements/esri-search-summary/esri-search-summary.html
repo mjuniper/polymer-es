@@ -1,12 +1,17 @@
 <link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
 
-<polymer-element name="esri-search-summary" attributes="searchEl, spinner, results">
+<polymer-element name="esri-search-summary" attributes="searchEl, spinner, showTiming, results">
   <template>
     <link rel="stylesheet" href="esri-search-summary.css">
     
     <paper-spinner id="spinner"></paper-spinner>
     <template if="{{results}}">
-      <div>Showing <strong>{{results.size < results.total ? results.size : results.total }}</strong> of <strong>{{results.total}}</strong> matching <strong>{{results.searchString}}</strong>.</div>
+      <div>
+        Showing <strong>{{results.size < results.total ? results.size : results.total }}</strong> of <strong>{{results.total}}</strong> matching <strong>{{results.searchString}}</strong>
+        <template if="{{showTiming}}">
+          <small>(search took: {{results.took}}ms, round trip: {{results.totalTime | round}}ms)</small>
+        </template>
+      </div>
     </template>
 
   </template>

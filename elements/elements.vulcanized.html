@@ -644,13 +644,18 @@ Element providing material design circular spinner.
 </polymer-element>
 
 
-<polymer-element name="esri-search-summary" attributes="searchEl, spinner, results" assetpath="esri-search-summary/">
+<polymer-element name="esri-search-summary" attributes="searchEl, spinner, showTiming, results" assetpath="esri-search-summary/">
   <template>
     <style>:host{display:block}</style>
     
     <paper-spinner id="spinner"></paper-spinner>
     <template if="{{results}}">
-      <div>Showing <strong>{{results.size < results.total ? results.size : results.total }}</strong> of <strong>{{results.total}}</strong> matching <strong>{{results.searchString}}</strong>.</div>
+      <div>
+        Showing <strong>{{results.size < results.total ? results.size : results.total }}</strong> of <strong>{{results.total}}</strong> matching <strong>{{results.searchString}}</strong>
+        <template if="{{showTiming}}">
+          <small>(search took: {{results.took}}ms, round trip: {{results.totalTime | round}}ms)</small>
+        </template>
+      </div>
     </template>
 
   </template>
@@ -683,8 +688,6 @@ Element providing material design circular spinner.
       </div>
     </li>
   </template>
-
-  <template bind="" ref="_itemTemplate"></template>
   
   <script src="esri-search-result/esri-search-result.js"></script>
 
@@ -776,7 +779,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="esri-search" attributes="searchEl, url, size" assetpath="esri-search/">
   <template>
-    <core-ajax id="ajax" name="ajax" url="{{url}}/_search?q={{searchString}}&amp;size={{size}}" handleas="json" response="{{results}}"></core-ajax>
+    <core-ajax id="ajax" name="ajax" url="{{url}}/_search?q={{searchString}}&amp;size={{size}}" handleas="json" response="{{results}}" on-core-response="{{onResponse}}">
+    </core-ajax>
   </template>
   
   <script src="esri-search/esri-search.js"></script>
@@ -784,9 +788,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </polymer-element>
 </div><div hidden>
 
-<polymer-element name="esri-item-detail" attributes="" assetpath="esri-item-detail/">
+<polymer-element name="esri-item-detail" attributes="item, resultsEl, spinner" assetpath="esri-item-detail/">
   <template>
     <style>:host{display:block}</style>
+
+    <paper-spinner id="spinner"></paper-spinner>
+    <template bind="{{item}}">
+      <h1>{{name}}</h1>
+    </template>
+
   </template>
 
   <script src="esri-item-detail/esri-item-detail.js"></script>
