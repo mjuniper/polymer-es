@@ -24,7 +24,8 @@
   <div class="search-unit">
     <!-- <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/opendataqa.arcgis.com_datasets_production_20140925181622853/"></esri-search> -->
     <!-- <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/open_data_item_index/"></esri-search> -->
-    <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/"></esri-search>
+    <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/" size="5"></esri-search>
+    
     <esri-search-field></esri-search-field>
   </div>
 
@@ -33,14 +34,9 @@
     <esri-search-results spinner="false"></esri-search-results>    
   </div>
 
-  <div class="results-unit">
+  <div class="details-unit">
     <esri-item-detail></esri-item-detail>
   </div>
-
-  <script>
-    document.querySelector('esri-search-results').addEventListener('esri:search-result:item-clicked', function (evt) { alert(evt.detail._source.name);
-    });
-  </script>
 
 </body>
 
