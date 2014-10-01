@@ -597,7 +597,7 @@ Example:
       <div class="search-container">
         <core-field>
           <core-icon icon="search"></core-icon>
-          <input type="search" autocomplete="off" autofocus?="{{autofocus}}" id="search" name="search" placeholder="{{placeholder}}" value="{{searchString}}">
+          <input type="text" autocomplete="off" autofocus?="{{autofocus}}" id="search" name="search" placeholder="{{placeholder}}" value="{{searchString}}">
         </core-field>
       </div>
     </form>
@@ -683,6 +683,8 @@ Element providing material design circular spinner.
       </div>
     </li>
   </template>
+
+  <template bind="" ref="_itemTemplate"></template>
   
   <script src="esri-search-result/esri-search-result.js"></script>
 
