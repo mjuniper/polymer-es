@@ -14,14 +14,28 @@
 
     search: function (evt) {
       this.searchString = evt.detail;
+      window.performance.mark('esri:search:start');
       this.$.ajax.go();
       this.fire('esri:search:start', this.searchString);
+    },
+
+    onResponse: function () {
+      window.performance.mark('esri:search:response');
+      window.performance.measure('esri-search-elapsed', 'esri:search:start', 'esri:search:response');
+
+      var measure = window.performance.getEntriesByName('esri-search-elapsed')[0];
+      this.searchElapsed = measure.duration;
+
+      window.performance.clearMarks();
+      window.performance.clearMeasures();
     },
 
     resultsChanged: function (oldVal) {
       var results = this.results.hits;
       results.searchString = this.searchString;
       results.size = this.size;
+      results.took = this.results.took;
+      results.totalTime = this.searchElapsed;
       this.fire('esri:search:complete', this.results.hits);
     }
 
