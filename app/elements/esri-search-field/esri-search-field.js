@@ -51,7 +51,7 @@
 
       var opts = {
         highlight: true,
-        minLength: 2,
+        minLength: 3,
         hint: false
       };
 
