@@ -119,6 +119,12 @@ module.exports = function (grunt) {
     open: {
       server: {
         path: 'http://localhost:<%= connect.options.port %>'
+      },
+      dev: {
+        path: 'http://mjuniper.github.io/polymer-es/'
+      },
+      prod: {
+        path: 'http://arcgis.github.io/whirlpool/'
       }
     },
     clean: {
@@ -258,7 +264,18 @@ module.exports = function (grunt) {
       options: {
         base: 'dist'
       },
-      src: '**/*'
+      dev: {
+        options: {
+          repo: 'https://github.com/mjuniper/polymer-es.git'
+        },
+        src: '**/*'
+      },
+      prod: {
+        options: {
+          repo: 'https://github.com/ArcGIS/whirlpool.git'
+        },
+        src: '**/*'
+      }
     }
   });
 
@@ -277,7 +294,7 @@ module.exports = function (grunt) {
       'copy:styles',
       'autoprefixer:server',
       'connect:livereload',
-      'open',
+      'open:server',
       'watch'
     ]);
   });
@@ -307,8 +324,12 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  grunt.registerTask('deploy', [
-    'build',
-    'gh-pages'
-  ]);
+  grunt.registerTask('deploy', function (target) {
+    target = target || 'prod';
+    grunt.task.run([
+      'build',
+      'gh-pages:'+target,
+      'open:'+target
+    ]);
+  });
 };
