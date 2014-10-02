@@ -47,6 +47,7 @@ esri-search-summary::shadow paper-spinner {
 
 esri-search-results {
   position: relative;
+  /*overflow-y: scroll;*/
 }
 
 esri-search-results::shadow paper-spinner {

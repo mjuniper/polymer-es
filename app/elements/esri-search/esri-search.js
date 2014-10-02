@@ -49,58 +49,80 @@
       }
     },
 
+    resultsChanged: function (oldVal) {
+      if (this.results) {
+        var results = this.results.hits;
+        results.searchString = this.searchString;
+        results.size = this.size;
+        results.took = this.results.took;
+        results.totalTime = this.searchElapsed;
+        this.fire('esri:search:complete', this.results.hits);
+      }
+    },
+
     constructUrl: function () {
       var self = this;
-      var searchObj = {
-        query: {
-          dis_max: {
-            queries: [
-              {
-                match: {
-                  title: {
-                    query: self.searchString,
-                    operator: 'and',
-                    boost: 1
-                  }
-                }
-              },
-              {
-                match: {
-                  tags: {
-                    query: self.searchString,
-                    operator: 'and',
-                    boost: 1
-                  }
-                }
-              }
-          
-            ]
-          }
-        },
-        filter: { 
+
+      //clone it
+      var searchObj = JSON.parse(JSON.stringify(this.searchObj));
+
+      //add searchString
+      searchObj.query.dis_max.queries.forEach(function (item) {
+        if (item.match.title) {
+          item.match.title.query = self.searchString;  
+        }
+        if (item.match.tags) {
+          item.match.tags.query = self.searchString;  
+        }
+      });
+
+      //add extent if present
+      if (this.extent) {
+        searchObj.filter = {
           range : {
-                min_y : {'gte': self.extent.ymin},
-                max_y : {'lte': self.extent.ymax},
-                min_x : {'gte': self.extent.xmin},
-                max_x : {'lte': self.extent.xmax}
-             }
+              min_y : {'gte': this.extent.ymin},
+              max_y : {'lte': this.extent.ymax},
+              min_x : {'gte': this.extent.xmin},
+              max_x : {'lte': this.extent.xmax}
+            }
+          }
+      }
 
-        },
-        size: self.size,
-        from: 0,
-        _source: ['title', 'name','description','id','tags','min_y','min_x','max_y','max_x']
-      };
+      //add size
+      searchObj.size = this.size;
 
+      //construct the url and return it
       return this.url + '_search?source=' + JSON.stringify(searchObj);
     },
 
-    resultsChanged: function (oldVal) {
-      var results = this.results.hits;
-      results.searchString = this.searchString;
-      results.size = this.size;
-      results.took = this.results.took;
-      results.totalTime = this.searchElapsed;
-      this.fire('esri:search:complete', this.results.hits);
+    searchObj: {
+      query: {
+        dis_max: {
+          queries: [
+            {
+              match: {
+                title: {
+                  query: '',
+                  operator: 'and',
+                  boost: 1
+                }
+              }
+            },
+            {
+              match: {
+                tags: {
+                  query: '',
+                  operator: 'and',
+                  boost: 1
+                }
+              }
+            }
+        
+          ]
+        }
+      },
+      from: 0,
+      _source: ['title', 'name','description', 'snippet', 'type','id','tags','min_y','min_x','max_y','max_x']
     }
 
   });

@@ -9,34 +9,46 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
+  <!-- build:css styles/main3.css -->
+  <link rel="stylesheet" href="styles/main3.css">
   <!-- endbuild-->
 
+  <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">
+
   <script src="bower_components/platform/platform.js"></script>
+
   <!-- build:vulcanized elements/elements.vulcanized.html -->
   <link rel="import" href="elements/elements.html">
   <!-- endbuild-->
 </head>
 
-<body unresolved>
+<body fullbleed layout vertical unresolved>
 
-  <div class="search-unit">
-    <!-- <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/opendataqa.arcgis.com_datasets_production_20140925181622853/"></esri-search> -->
-    <!-- <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/open_data_item_index/"></esri-search> -->
-    <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/" size="20"></esri-search>
+    <core-header-panel flex>
+      <div class="core-header">
+        <div class="core-header-inner">
+          <h1>Search...</h1>
+
+          <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/" size="20"></esri-search>
     
-    <esri-search-field></esri-search-field>
-  </div>
+          <esri-search-field></esri-search-field>
+        </div>
+      </div>
+      <div layout vertical class="main">
+        <div id="map"></div>
 
-  <div class="results-unit">
-    <esri-search-summary showTiming="true"></esri-search-summary>
-    <esri-search-results spinner="false"></esri-search-results>    
-  </div>
+        <esri-search-summary showTiming="true"></esri-search-summary>
+        <esri-search-results spinner="false"></esri-search-results> 
 
-  <div class="details-unit">
-    <esri-item-detail></esri-item-detail>
-  </div>
+        <!-- <esri-item-detail></esri-item-detail> -->
+      </div>
+    </core-header-panel>
+
+  <script src="http://js.arcgis.com/3.10/"></script>
+  
+  <!-- build:js scripts/app.js -->
+  <script src="scripts/app.js"></script>
+  <!-- endbuild-->
 
 </body>
 

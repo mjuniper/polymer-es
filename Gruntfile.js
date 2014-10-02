@@ -227,7 +227,8 @@ module.exports = function (grunt) {
             'elements/**',
             '!elements/**/*.css',
             'images/{,*/}*.{webp,gif}',
-            'bower_components/**'
+            'bower_components/**',
+            'scripts/**'
           ]
         }]
       },
@@ -311,7 +312,7 @@ module.exports = function (grunt) {
     'imagemin',
     'concat',
     'autoprefixer',
-    //'uglify',
+    'uglify',
     'cssmin',
     'vulcanize',
     'usemin',
