@@ -13,6 +13,7 @@
 
     stripHtml: function (html) {
       html = html || '';
+      html = (html === 'null') ? '' : html;
       var div = document.createElement('div');
       div.innerHTML = html;
       return div.textContent || div.innerText || '';

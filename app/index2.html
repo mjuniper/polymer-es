@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Polymer WebApp</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main2.css">
+  <!-- endbuild-->
+
+  <script src="bower_components/platform/platform.js"></script>
+  <!-- build:vulcanized elements/elements.vulcanized.html -->
+  <link rel="import" href="elements/elements2.html">
+  <!-- endbuild-->
+</head>
+
+<body fullbleed layout vertical unresolved>
+
+  <core-drawer-panel id="drawerPanel" drawerWidth="30%">
+
+    <core-header-panel id="search-container" drawer>
+      <core-toolbar id="navheader"></core-toolbar>
+      <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/" size="20"></esri-search>
+  
+      <esri-search-field></esri-search-field>
+
+      <esri-search-summary showTiming="true"></esri-search-summary>
+      <esri-search-results spinner="false"></esri-search-results> 
+    </core-header-panel>
+
+    <core-header-panel id="details-container" main>
+      <core-toolbar id="mainheader">
+        <paper-icon-button id="navicon" icon="menu"></paper-icon-button>
+        <span flex><h1>Search...</h1></span>
+      </core-toolbar>
+      <div class="content">
+        <esri-item-detail></esri-item-detail>
+      </div>
+    </core-header-panel>
+
+  </core-drawer-panel>
+
+  <script>
+    document.addEventListener('polymer-ready', function() {
+      var navicon = document.getElementById('navicon');
+      var drawerPanel = document.getElementById('drawerPanel');
+      navicon.addEventListener('click', function() {
+        drawerPanel.togglePanel();
+      });
+    });
+  </script>
+
+</body>
+
+</html>

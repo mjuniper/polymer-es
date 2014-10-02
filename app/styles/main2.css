@@ -1,0 +1,41 @@
+#navheader, #mainheader {
+  background-color: #526E9C; color: #fff;
+}
+
+.core-header h1 {
+  margin: 0;
+}
+
+#search-container::shadow #mainContainer {
+  padding: 15px;
+  overflow-y: scroll;
+  box-shadow: 2px 0 2px 0 #ccc;
+}
+
+#details-container::shadow #mainContainer {
+  padding: 15px;
+  overflow-y: scroll;
+}
+
+esri-search-summary {
+  position: relative;
+  margin-top: 10px;
+}
+
+esri-search-summary::shadow paper-spinner {
+  position: absolute;
+  margin-top: 5px;
+}
+
+core-drawer-panel:not([narrow]) #navicon {
+  display: none;
+}
+
+esri-search-results {
+  position: relative;
+}
+
+esri-search-results::shadow paper-spinner {
+  position: absolute;
+  margin-top: 5px;
+}

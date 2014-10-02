@@ -10,9 +10,28 @@ body {
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
-  padding: 60px;
+  padding: 40px 0 20px 0;
 }
 
-/*esri-search-results::shadow ul {
-  border: solid 2px red;
-}*/
+.results-unit, .details-unit {
+  margin-top: 0;
+  padding: 0;
+}
+
+esri-search-summary {
+  position: relative;
+}
+
+esri-search-summary::shadow paper-spinner {
+  position: absolute;
+  margin-top: 5px;
+}
+
+esri-search-results {
+  position: relative;
+}
+
+esri-search-results::shadow paper-spinner {
+  position: absolute;
+  margin-top: 5px;
+}

@@ -1,21 +1,23 @@
 
-:host .dataset-thumb {
+/*:host .dataset-thumb {
   float: left;
 }
 
 :host .result-main {
   padding-left: 220px;
 
-}
+}*/
 
 :host .dataset-item {
-  clear: both;
-  padding-top: 35px;
-  height: 175px;
+  margin-top: 25px;
+  padding: 5px 5px 3px 5px;
+  height: 100px;
   overflow: hidden;
+  border: solid 1px gray;
+  border-radius: 3px;
 }
 
 :host .dataset-item h3 {
-  margin: 0;
+  margin: 0 0 3px 0;
   cursor: pointer;
 }

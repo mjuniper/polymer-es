@@ -1,0 +1,54 @@
+body {
+  background: #fafafa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.core-header {
+  background-color: #526E9C; color: #fafafa;
+  padding:8px 20px; 
+}
+
+.core-header-inner, .main {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.core-header h1 {
+  margin: 0;
+  float: left;
+}
+
+.core-header esri-search-field {
+  width: 50%;
+  float: right;
+}
+
+#map {
+  margin-top: 15px;
+  width: 100%;
+  height: 400px;
+  background-color: lightgray;
+}
+
+esri-search-field::shadow core-field {
+  background-color: #fafafa;
+}
+
+esri-search-summary {
+  position: relative;
+  margin-top: 25px;
+}
+
+esri-search-summary::shadow paper-spinner {
+  position: absolute;
+}
+
+esri-search-results {
+  position: relative;
+}
+
+esri-search-results::shadow paper-spinner {
+  position: absolute;
+}
