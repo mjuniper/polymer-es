@@ -1,1 +1,1 @@
-:host .dataset-thumb{float:left}:host .result-main{padding-left:220px}:host .dataset-item{clear:both;padding-top:35px;height:175px;overflow:hidden}:host .dataset-item h3{margin:0;cursor:pointer}
+:host .dataset-item{margin-top:25px;padding:5px 5px 3px;height:100px;overflow:hidden;border:1px solid gray;border-radius:3px}:host .dataset-item h3{margin:0 0 3px;cursor:pointer}

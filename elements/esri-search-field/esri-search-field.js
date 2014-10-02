@@ -7,10 +7,11 @@
     placeholder: 'Search for Open Data',
     searchString: '',
     searchEl: 'esri-search',
+    extent: null,
 
     domReady: function () {
       //var url = document.querySelector(this.searchEl).url + '_search?size=5&q=tags:~QUERY~*%20title:~QUERY~*&_source_include=title,tags';
-      var url = document.querySelector(this.searchEl).url + '_search?source={"query":{"dis_max":{"queries":[{"match":{"title":{"query":"~QUERY~","operator":"and","boost":1,"analyzer":"od_autocomplete"}}},{"match":{"tags":{"query":"~QUERY~","operator":"and","boost":1,"analyzer":"od_autocomplete"}}}]}},"size":10,"from":0,"fields":["title","tags","name"]}';
+      var url = document.querySelector(this.searchEl).url + '_search?source={"query":{"dis_max":{"queries":[{"match":{"title":{"query":"~QUERY~","operator":"and","boost":1,"analyzer":"od_autocomplete"}}},{"match":{"tags":{"query":"~QUERY~","operator":"and","boost":1,"analyzer":"od_autocomplete"}}}]}},"size":10,"from":0,"_source":["title","tags","name"]}';
       this.initTypeahead(url);
     },
 
@@ -63,7 +64,7 @@
       var datasets = {
         name: 'datasets',
         displayKey: function(item) {
-          return item.fields.title[0];
+          return item._source.title;
         },
         templates: {
           empty: '<div class="empty-message">No datasets found.</div>'

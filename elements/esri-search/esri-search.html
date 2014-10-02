@@ -4,8 +4,7 @@
   <template>
     <core-ajax
       id="ajax"
-      name="ajax" 
-      url="{{url}}/_search?q={{searchString}}&size={{size}}"
+      name="ajax"  
       handleAs="json"
       response="{{results}}"
       on-core-response="{{onResponse}}">

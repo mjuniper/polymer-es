@@ -5,20 +5,14 @@
     <link rel="stylesheet" href="esri-search-result.css">
 
     <li class="dataset-item">
+      <h3 on-click="{{onItemClick}}">
+        {{ item._source.title }} <small>({{item._source.name}})</small>
+      </h3>
       <div>
-        <h3 class="card-title" on-click="{{onItemClick}}">
-          {{ item._source.name }}
-        </h3>
+        Type: {{item._source.type}}
       </div>
       <div>
-        <div class="dataset-thumb">
-          <img src="{{ item._source.thumbnail_url || 'elements/esri-search-results/default-dataset-thumb.png' }}">
-        </div>
-        <div class="result-main">
-          <div class="snippet">
-            {{item._source.description | stripHtml}}
-          </div>
-        </div>
+        {{item._source.snippet | stripHtml}}
       </div>
     </li>
   </template>
