@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Polymer WebApp</title><meta name="description" content><meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"><link rel="stylesheet" href="styles/main.css"><link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css"><script src="bower_components/platform/platform.js"></script><link rel="import" href="elements/layout-search.html"></head><body fullbleed layout vertical unresolved><core-header-panel flex><div class="core-header"><div class="core-header-inner"><h1>Search...</h1><esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/" size="150"></esri-search><esri-search-field></esri-search-field></div></div><div layout vertical class="main"><div id="map"></div><div id="summary"></div><esri-search-results spinner="false"></esri-search-results></div></core-header-panel><script type="text/javascript">
+    window.dojoConfig = {
+      packages: [{
+          name: 'widgets',
+          location: window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/widgets'
+      }]
+    };
+  </script><script src="http://js.arcgis.com/3.10/"></script><script src="scripts/app.js"></script></body></html>
