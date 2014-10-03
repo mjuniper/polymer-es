@@ -127,16 +127,6 @@
                         analyzer: 'od_autocomplete'
                       }
                     }
-                  },
-                  {
-                    match: {
-                      tags: {
-                        query: '',
-                        operator: 'and',
-                        boost: 1,
-                        analyzer: 'od_autocomplete'
-                      }
-                    }
                   }
                 ]
               }
