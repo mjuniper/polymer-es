@@ -39,9 +39,9 @@
       window.performance.clearMeasures();
     },
 
-    extentChanged: function (extent) {
+    extentChanged: function (oldVal) {
       //set extent on searchEl so subsequent autocompletes will use the extent
-      this.searchField.extent = extent;
+      this.searchField.extent = this.extent;
 
       //trigger a search
       if (this.searchString) {
@@ -67,7 +67,7 @@
       var searchObj = JSON.parse(JSON.stringify(this.searchObj));
 
       //add searchString
-      searchObj.query.dis_max.queries.forEach(function (item) {
+      searchObj.query.filtered.query.dis_max.queries.forEach(function (item) {
         if (item.match.title) {
           item.match.title.query = self.searchString;  
         }
@@ -78,14 +78,17 @@
 
       //add extent if present
       if (this.extent) {
-        searchObj.filter = {
-          range : {
-              min_y : {'gte': this.extent.ymin},
-              max_y : {'lte': this.extent.ymax},
-              min_x : {'gte': this.extent.xmin},
-              max_x : {'lte': this.extent.xmax}
-            }
+        var ext = this.extent;
+        searchObj.query.filtered.filter = {
+          bool: {
+            must: [
+              { range: { min_y: { gte: ext.ymin, lte: ext.ymax } } },
+              { range: { max_y: { lte: ext.ymax, gte: ext.ymin } } },
+              { range: { min_x: { gte: ext.xmin, lte: ext.xmax } } },
+              { range: { max_x: { lte: ext.xmax, gte: ext.xmin } } }
+            ]
           }
+        }
       }
 
       //add size
@@ -97,32 +100,37 @@
 
     searchObj: {
       query: {
-        dis_max: {
-          queries: [
-            {
-              match: {
-                title: {
-                  query: '',
-                  operator: 'and',
-                  boost: 1
-                }
+        filtered: {
+          query: {
+              dis_max: {
+                queries: [
+                  {
+                    match: {
+                      title: {
+                        query: '',
+                        operator: 'and',
+                        boost: 1,
+                        analyzer: 'od_autocomplete'
+                      }
+                    }
+                  },
+                  {
+                    match: {
+                      tags: {
+                        query: '',
+                        operator: 'and',
+                        boost: 1,
+                        analyzer: 'od_autocomplete'
+                      }
+                    }
+                  }
+                ]
               }
             },
-            {
-              match: {
-                tags: {
-                  query: '',
-                  operator: 'and',
-                  boost: 1
-                }
-              }
-            }
-        
-          ]
         }
       },
       from: 0,
-      _source: ['title', 'name','description', 'snippet', 'type','id','tags','min_y','min_x','max_y','max_x']
+      _source: ['title', 'snippet', 'type','id','min_y','min_x','max_y','max_x']
     }
 
   });

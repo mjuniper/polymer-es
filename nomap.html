@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Polymer WebApp</title><meta name="description" content><meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"><style>
+    body {
+      background: #fafafa;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #333;
+    }
+
+    .search-unit, .results-unit, .details-unit {
+      margin: 50px auto 0 auto;
+      width: 800px;
+      font-size: 18px;
+      font-weight: 200;
+      line-height: 30px;
+      padding: 40px 0 20px 0;
+    }
+
+    .results-unit, .details-unit {
+      margin-top: 0;
+      padding: 0;
+    }
+
+    esri-search-summary {
+      position: relative;
+    }
+
+    esri-search-summary::shadow paper-spinner {
+      position: absolute;
+      margin-top: 5px;
+    }
+
+    esri-search-results {
+      position: relative;
+    }
+
+    esri-search-results::shadow paper-spinner {
+      position: absolute;
+      margin-top: 5px;
+    }
+  </style><script src="bower_components/platform/platform.js"></script><link rel="import" href="elements/elements.vulcanized.html"></head><body unresolved><div class="search-unit"><esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/" size="20"></esri-search><esri-search-field></esri-search-field></div><div class="results-unit"><esri-search-summary showtiming="true"></esri-search-summary><esri-search-results spinner="false"></esri-search-results></div><div class="details-unit"><esri-item-detail></esri-item-detail></div></body></html>
