@@ -4,34 +4,73 @@ body {
   color: #333;
 }
 
-.search-unit, .results-unit, .details-unit {
-  margin: 50px auto 0 auto;
-  width: 800px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  padding: 40px 0 20px 0;
+.core-header {
+  background-color: #526E9C; color: #fafafa;
+  padding:8px 20px; 
 }
 
-.results-unit, .details-unit {
-  margin-top: 0;
-  padding: 0;
+.core-header-inner, .main {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.core-header h1 {
+  margin: 0;
+  float: left;
+}
+
+.core-header esri-search-field {
+  width: 50%;
+  float: right;
+}
+
+#map {
+  margin-top: 15px;
+  width: 100%;
+  height: 400px;
+  background-color: lightgray;
+}
+
+esri-search-field::shadow core-field {
+  background-color: #fafafa;
 }
 
 esri-search-summary {
   position: relative;
+  margin-top: 25px;
+  color: #526E9C;
 }
 
 esri-search-summary::shadow paper-spinner {
   position: absolute;
-  margin-top: 5px;
 }
 
 esri-search-results {
   position: relative;
+  /*overflow-y: scroll;*/
 }
 
 esri-search-results::shadow paper-spinner {
   position: absolute;
-  margin-top: 5px;
+}
+
+esri-search-results::shadow ul {
+  columns: 2;
+}
+
+esri-search-results::shadow esri-search-result::shadow li {
+  color: #526E9C;
+  font-size: 85%;
+  margin-top: 10px;
+  height: 60px;
+  border-color: lightgray;
+  cursor: pointer;
+}
+
+esri-search-results::shadow esri-search-result::shadow li .snippet, esri-search-results::shadow esri-search-result::shadow li h3 {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -4,14 +4,14 @@
   <template>
     <link rel="stylesheet" href="esri-search-result.css">
 
-    <li class="dataset-item">
-      <h3 on-click="{{onItemClick}}">
-        {{ item._source.title }} <small>({{item._source.name}})</small>
+    <li class="dataset-item" on-mouseover="{{onMouseOver}}" on-mouseout="{{onMouseOut}}" on-click="{{onItemClick}}>
+      <h3">
+        {{ item._source.title }}
       </h3>
-      <div>
+      <div class="type">
         Type: {{item._source.type}}
       </div>
-      <div>
+      <div class="snippet">
         {{item._source.snippet | stripHtml}}
       </div>
     </li>
