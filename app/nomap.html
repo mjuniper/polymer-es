@@ -18,7 +18,7 @@
 
     .search-unit, .results-unit, .details-unit {
       margin: 50px auto 0 auto;
-      width: 800px;
+      width: 1000px;
       font-size: 18px;
       font-weight: 200;
       line-height: 30px;
@@ -43,9 +43,33 @@
       position: relative;
     }
 
+    esri-search-results::shadow ul {
+      /*-webkit-columns: 2;*/
+    }
+
     esri-search-results::shadow paper-spinner {
       position: absolute;
       margin-top: 5px;
+    }
+
+    esri-search-results::shadow esri-search-result::shadow li {
+      /*color: #526E9C;*/
+      font-size: 70%;
+      margin-top: 10px;
+      height: 60px;
+      border-color: lightgray;
+      line-height: 1.5em;
+      padding: 6px 5px 3px 10px;
+      width: 31%;
+      display: inline-block;
+    }
+
+    esri-search-results::shadow esri-search-result::shadow li .snippet, esri-search-results::shadow esri-search-result::shadow li h3 {
+      cursor: auto;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   </style>
 
@@ -60,7 +84,7 @@
   <div class="search-unit">
     <!-- <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/opendataqa.arcgis.com_datasets_production_20140925181622853/"></esri-search> -->
     <!-- <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/open_data_item_index/"></esri-search> -->
-    <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/" size="50"></esri-search>
+    <esri-search url="http://testing-qa-es-public-58843862.us-east-1.elb.amazonaws.com/demo_items/" size="300"></esri-search>
     
     <esri-search-field></esri-search-field>
   </div>

@@ -56,7 +56,7 @@ esri-search-results::shadow paper-spinner {
 }
 
 esri-search-results::shadow ul {
-  columns: 2;
+  /*columns: 2;*/
 }
 
 esri-search-results::shadow esri-search-result::shadow li {
@@ -66,6 +66,8 @@ esri-search-results::shadow esri-search-result::shadow li {
   height: 60px;
   border-color: lightgray;
   cursor: pointer;
+  width: 31%;
+  display: inline-block;
 }
 
 esri-search-results::shadow esri-search-result::shadow li .snippet, esri-search-results::shadow esri-search-result::shadow li h3 {
