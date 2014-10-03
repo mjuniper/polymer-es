@@ -1575,10 +1575,10 @@ Element providing material design circular spinner.
   <template>
     <style>:host .dataset-item{margin-top:25px;padding:5px 5px 3px;height:100px;overflow:hidden;border:1px solid gray;border-radius:3px}:host .dataset-item h3{margin:0 0 3px;cursor:pointer}</style>
 
-    <li class="dataset-item" on-mouseover="{{onMouseOver}}" on-mouseout="{{onMouseOut}}" on-click="{{onItemClick}}&gt;
-      &lt;h3">
+    <li class="dataset-item" on-mouseover="{{onMouseOver}}" on-mouseout="{{onMouseOut}}" on-click="{{onItemClick}}">
+      <h3>
         {{ item._source.title }}
-      
+      </h3>
       <div class="type">
         Type: {{item._source.type}}
       </div>
