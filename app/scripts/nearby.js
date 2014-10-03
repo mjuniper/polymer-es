@@ -16,6 +16,7 @@
     });
 
     map.on('load', onLoad);
+    map.on('click', onMapClick);
     map.on('extent-change', onExtentChange);
 
     defaultSym = new esri.symbol.SimpleFillSymbol(
@@ -38,7 +39,7 @@
   function onLoad () {
     extentsLayer = new esri.layers.GraphicsLayer();
     map.addLayer(extentsLayer);
-    document.querySelector('esri-search').addEventListener('esri:search:complete', onSearchComplete);
+    document.querySelector('esri-search-custom').addEventListener('esri:search:complete', onSearchComplete);
     document.querySelector('esri-search-results').addEventListener('esri:search-result:item-clicked', zoomToExtent);
     document.querySelector('esri-search-results').addEventListener('esri:search-result:item-mouseover', hilightExtent);
     document.querySelector('esri-search-results').addEventListener('esri:search-result:item-mouseout', unhilightExtent);
@@ -90,7 +91,11 @@
   }
 
   function onExtentChange () {
-    document.querySelector('esri-search').extent = esri.geometry.webMercatorToGeographic(map.extent);
+    document.querySelector('esri-search-custom').extent = esri.geometry.webMercatorToGeographic(map.extent);
+  }
+
+  function onMapClick (evt) {
+    document.querySelector('esri-search-custom').point = esri.geometry.webMercatorToGeographic(evt.mapPoint);
   }
 
   function onSearchComplete (evt) {

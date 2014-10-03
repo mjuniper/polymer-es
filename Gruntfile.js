@@ -174,7 +174,8 @@ module.exports = function (grunt) {
           //   '<%= yeoman.dist %>/elements/elements.html'
           // ]
           '<%= yeoman.dist %>/elements/esri-search.html': '<%= yeoman.dist %>/elements/esri-search-src.html',
-          '<%= yeoman.dist %>/elements/layout.html': '<%= yeoman.dist %>/elements/layout-src.html'
+          '<%= yeoman.dist %>/elements/layout.html': '<%= yeoman.dist %>/elements/layout-src.html',
+          '<%= yeoman.dist %>/elements/layout-search.html': '<%= yeoman.dist %>/elements/layout-search-src.html'
         }
       }
     },
@@ -285,37 +286,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // //https://github.com/pifantastic/grunt-s3
-    // s3: {
-    //   options: {
-    //     access: 'public-read',
-    //     key: '<%= aws.key %>',
-    //     secret: '<%= aws.secret %>',
-    //     bucket: 'web-components'
-    //   },
-    //   upload: [
-    //     {
-    //       src: 'dist/bower_components/**/*.*',
-    //       dest: '/',
-    //       rel: 'dist',
-    //       options: {
-    //         headers: {
-    //           'Cache-Control': 'max-age=30' 
-    //         }
-    //       }
-    //     },
-    //     {
-    //       src: 'dist/elements/**/*.*',
-    //       dest: '/',
-    //       rel: 'dist',
-    //       options: {
-    //         headers: {
-    //           'Cache-Control': 'max-age=30' 
-    //         }
-    //       }
-    //     }
-    //   ]
-    // }
     s3: {
       options: {
         accessKeyId: "<%= aws.accessKeyId %>",
@@ -389,7 +359,7 @@ module.exports = function (grunt) {
     
     grunt.task.run([
       'build',
-      //'s3',
+      's3',
       'gh-pages:'+target,
       'open:'+target
     ]);
