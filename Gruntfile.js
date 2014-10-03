@@ -24,6 +24,10 @@ module.exports = function (grunt) {
   };
 
   grunt.initConfig({
+
+    //aws credentials go in this file
+    aws: grunt.file.readJSON('grunt-aws.json'),
+
     yeoman: yeomanConfig,
     watch: {
       options: {
@@ -166,9 +170,11 @@ module.exports = function (grunt) {
           strip: true
         },
         files: {
-          '<%= yeoman.dist %>/elements/elements.vulcanized.html': [
-            '<%= yeoman.dist %>/elements/elements.html'
-          ]
+          // '<%= yeoman.dist %>/elements/elements.vulcanized.html': [
+          //   '<%= yeoman.dist %>/elements/elements.html'
+          // ]
+          '<%= yeoman.dist %>/elements/esri-search.html': '<%= yeoman.dist %>/elements/esri-search-src.html',
+          '<%= yeoman.dist %>/elements/layout.html': '<%= yeoman.dist %>/elements/layout-src.html'
         }
       }
     },
@@ -277,6 +283,59 @@ module.exports = function (grunt) {
         },
         src: '**/*'
       }
+    },
+
+    // //https://github.com/pifantastic/grunt-s3
+    // s3: {
+    //   options: {
+    //     access: 'public-read',
+    //     key: '<%= aws.key %>',
+    //     secret: '<%= aws.secret %>',
+    //     bucket: 'web-components'
+    //   },
+    //   upload: [
+    //     {
+    //       src: 'dist/bower_components/**/*.*',
+    //       dest: '/',
+    //       rel: 'dist',
+    //       options: {
+    //         headers: {
+    //           'Cache-Control': 'max-age=30' 
+    //         }
+    //       }
+    //     },
+    //     {
+    //       src: 'dist/elements/**/*.*',
+    //       dest: '/',
+    //       rel: 'dist',
+    //       options: {
+    //         headers: {
+    //           'Cache-Control': 'max-age=30' 
+    //         }
+    //       }
+    //     }
+    //   ]
+    // }
+    s3: {
+      options: {
+        accessKeyId: "<%= aws.accessKeyId %>",
+        secretAccessKey: "<%= aws.secretAccessKey %>",
+        bucket: "web-components",
+        //dryRun: true,
+        //cache: false
+        headers: {
+          CacheControl: 30
+        }
+      },
+      bower: {
+        cwd: "dist/",
+        src: 'bower_components/**/*.*'
+      },
+      elements: {
+        cwd: "dist/elements",
+        src: '**/*.*',
+        dest: 'esri-search/'
+      }
     }
   });
 
@@ -327,8 +386,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('deploy', function (target) {
     target = target || 'prod';
+    
     grunt.task.run([
       'build',
+      //'s3',
       'gh-pages:'+target,
       'open:'+target
     ]);
