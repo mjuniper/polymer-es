@@ -44,9 +44,9 @@
       this.searchField.extent = this.extent;
 
       //trigger a search
-      if (this.searchString) {
+      //if (this.searchString) {
         this.search();  
-      }
+      //}
     },
 
     resultsChanged: function (oldVal) {
@@ -66,15 +66,19 @@
       //clone it
       var searchObj = JSON.parse(JSON.stringify(this.searchObj));
 
-      //add searchString
-      searchObj.query.filtered.query.dis_max.queries.forEach(function (item) {
-        if (item.match.title) {
-          item.match.title.query = self.searchString;  
-        }
-        if (item.match.tags) {
-          item.match.tags.query = self.searchString;  
-        }
-      });
+      if (this.searchString) {
+        //add searchString
+        searchObj.query.filtered.query.dis_max.queries.forEach(function (item) {
+          if (item.match.title) {
+            item.match.title.query = self.searchString;  
+          }
+          if (item.match.tags) {
+            item.match.tags.query = self.searchString;  
+          }
+        });
+      } else {
+        delete searchObj.query.filtered.query;
+      }
 
       //add extent if present
       if (this.extent) {
