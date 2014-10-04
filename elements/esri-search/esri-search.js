@@ -8,7 +8,7 @@
     size: 20,
     extent: null,
 
-    ready: function () {
+    domReady: function () {
       this.searchField = document.querySelector(this.searchEl);
       this.searchField.addEventListener('esri:search:before-start', this.onSearchStart.bind(this));
     },
@@ -45,7 +45,7 @@
 
       //trigger a search
       //if (this.searchString) {
-        this.search();  
+        this.search();
       //}
     },
 
@@ -70,10 +70,10 @@
         //add searchString
         searchObj.query.filtered.query.dis_max.queries.forEach(function (item) {
           if (item.match.title) {
-            item.match.title.query = self.searchString;  
+            item.match.title.query = self.searchString;
           }
           if (item.match.tags) {
-            item.match.tags.query = self.searchString;  
+            item.match.tags.query = self.searchString;
           }
         });
       } else {

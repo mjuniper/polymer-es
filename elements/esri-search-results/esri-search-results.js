@@ -6,7 +6,7 @@
     searchEl: 'esri-search',
     spinner: true,
 
-    ready: function () {
+    domReady: function () {
       var searchComponent = document.querySelector(this.searchEl);
       searchComponent.addEventListener('esri:search:start', this.showLoading.bind(this));
       searchComponent.addEventListener('esri:search:complete', this.handleResults.bind(this));
