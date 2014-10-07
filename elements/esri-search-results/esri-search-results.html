@@ -1,14 +1,14 @@
 <link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../esri-search-result/esri-search-result.html">
 
-<polymer-element name="esri-search-results" attributes="searchEl, spinner, results">
+<polymer-element name="esri-search-results" attributes="searchEl, spinner, results, itemTemplate">
   <template>
     <link rel="stylesheet" href="esri-search-results.css">
 
     <paper-spinner id="spinner"></paper-spinner>
       <ul>
         <template repeat="{{dataset in results.hits}}">
-          <esri-search-result item="{{dataset}}"></esri-search-result>
+          <esri-search-result item="{{dataset}}" itemTemplate="{{itemTemplate}}"></esri-search-result>
         </template>
       </ul>
   </template>

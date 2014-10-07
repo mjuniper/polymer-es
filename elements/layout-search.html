@@ -666,20 +666,22 @@ Element providing material design circular spinner.
 </div><div hidden>
 
 
-<polymer-element name="esri-search-result" attributes="item" assetpath="esri-search-result/">
+<polymer-element name="esri-search-result" attributes="item, itemTemplate" assetpath="esri-search-result/">
   <template>
     <style>:host .dataset-item{margin-top:25px;padding:5px 5px 3px;height:100px;overflow:hidden;border:1px solid gray;border-radius:3px}:host .dataset-item h3{margin:0 0 3px;cursor:pointer}</style>
 
-    <li class="dataset-item" on-mouseover="{{onMouseOver}}" on-mouseout="{{onMouseOut}}" on-click="{{onItemClick}}">
-      <h3>
-        {{ item._source.title }}
-      </h3>
-      <div class="type">
-        Type: {{item._source.type}}
-      </div>
-      <div class="snippet">
-        {{item._source.snippet | stripHtml}}
-      </div>
+    <li class="dataset-item" id="result-item-container" on-mouseover="{{onMouseOver}}" on-mouseout="{{onMouseOut}}" on-click="{{onItemClick}}">
+      <template if="{{showDefault}}">
+        <h3>
+          {{ item._source.title }}
+        </h3>
+        <div class="type">
+          Type: {{item._source.type}}
+        </div>
+        <div class="snippet">
+          {{item._source.snippet | stripHtml}}
+        </div>
+      </template>
     </li>
   </template>
   
@@ -688,14 +690,14 @@ Element providing material design circular spinner.
 </polymer-element>
 
 
-<polymer-element name="esri-search-results" attributes="searchEl, spinner, results" assetpath="esri-search-results/">
+<polymer-element name="esri-search-results" attributes="searchEl, spinner, results, itemTemplate" assetpath="esri-search-results/">
   <template>
     <style>:host{display:block}:host ul{list-style:none;padding:0}</style>
 
     <paper-spinner id="spinner"></paper-spinner>
       <ul>
         <template repeat="{{dataset in results.hits}}">
-          <esri-search-result item="{{dataset}}"></esri-search-result>
+          <esri-search-result item="{{dataset}}" itemtemplate="{{itemTemplate}}"></esri-search-result>
         </template>
       </ul>
   </template>

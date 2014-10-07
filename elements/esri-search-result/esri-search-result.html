@@ -1,19 +1,21 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<polymer-element name="esri-search-result" attributes="item">
+<polymer-element name="esri-search-result" attributes="item, itemTemplate">
   <template>
     <link rel="stylesheet" href="esri-search-result.css">
 
-    <li class="dataset-item" on-mouseover="{{onMouseOver}}" on-mouseout="{{onMouseOut}}" on-click="{{onItemClick}}">
-      <h3>
-        {{ item._source.title }}
-      </h3>
-      <div class="type">
-        Type: {{item._source.type}}
-      </div>
-      <div class="snippet">
-        {{item._source.snippet | stripHtml}}
-      </div>
+    <li class="dataset-item" id="result-item-container" on-mouseover="{{onMouseOver}}" on-mouseout="{{onMouseOut}}" on-click="{{onItemClick}}">
+      <template if="{{showDefault}}">
+        <h3>
+          {{ item._source.title }}
+        </h3>
+        <div class="type">
+          Type: {{item._source.type}}
+        </div>
+        <div class="snippet">
+          {{item._source.snippet | stripHtml}}
+        </div>
+      </template>
     </li>
   </template>
   
